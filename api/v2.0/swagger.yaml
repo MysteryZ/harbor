@@ -4269,7 +4269,7 @@ paths:
         '404':
           $ref: '#/responses/404'
         '500':
-          $ref: '#/responses/500'        
+          $ref: '#/responses/500'
   /system/purgeaudit/{purge_id}/log:
     get:
       summary: Get purge job log.
@@ -7474,6 +7474,11 @@ definitions:
         x-nullable: true
         x-omitempty: true
         description: The auth mode of current Harbor instance.
+      primary_auth_mode:
+        type: boolean
+        x-nullable: true
+        x-omitempty: true
+        description: The flag to indicate whether the current auth mode should consider as a primary one.
       project_creation_restriction:
         type: string
         x-nullable: true
@@ -7601,7 +7606,7 @@ definitions:
       update_time:
         type: string
         format: date-time
-        description: the update time of purge job.        
+        description: the update time of purge job.
   Schedule:
     type: object
     properties:
@@ -8401,6 +8406,9 @@ definitions:
       auth_mode:
         $ref: '#/definitions/StringConfigItem'
         description: The auth mode of current system, such as "db_auth", "ldap_auth", "oidc_auth"
+      primary_auth_mode:
+        $ref: '#/definitions/BoolConfigItem'
+        description: The flag to indicate whether the current auth mode should consider as a primary one.
       email_from:
         $ref: '#/definitions/StringConfigItem'
         description: The sender name for Email notification.
@@ -8581,6 +8589,11 @@ definitions:
         description: The auth mode of current system, such as "db_auth", "ldap_auth", "oidc_auth"
         x-omitempty: true
         x-isnullable: true
+      primary_auth_mode:
+        type: boolean
+        x-nullable: true
+        x-omitempty: true
+        description: The flag to indicate whether the current auth mode should consider as a primary one.
       email_from:
         type: string
         description: The sender name for Email notification.
@@ -8855,12 +8868,12 @@ definitions:
         type: string
         description: The audit log forward endpoint
         x-omitempty: true
-        x-isnullable: true  
+        x-isnullable: true
       skip_audit_log_database:
         type: boolean
         description: Skip audit log database
         x-omitempty: true
-        x-isnullable: true          
+        x-isnullable: true
   StringConfigItem:
     type: object
     properties:
